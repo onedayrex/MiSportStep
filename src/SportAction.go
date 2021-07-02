@@ -62,15 +62,12 @@ func (s *Sport) Login() (appToken string, userId string) {
 	if err != nil {
 		panic(err)
 	}
-	log.Println(resp)
-	log.Println(code)
 	all, err := ioutil.ReadAll(resp.Body)
 	var resultJson map[string]interface{}
 	err = json.Unmarshal(all, &resultJson)
 	tokenInfo := resultJson["token_info"].(map[string]interface{})
 	appToken = tokenInfo["app_token"].(string)
 	userId = tokenInfo["user_id"].(string)
-	log.Printf("login tokenInfo ==> %s", tokenInfo)
 	s.AppToken = appToken
 	s.UserId = userId
 	return appToken, userId
@@ -92,7 +89,6 @@ func httpPost(url string, body io.Reader) ([]byte, *http.Header) {
 	if err != nil {
 		panic(err)
 	}
-	log.Println(resp)
 	defer resp.Body.Close()
 	all, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
@@ -121,6 +117,7 @@ func getAccessCode(userName string, password string) string {
 
 func (s *Sport) PushSetp() {
 	step := s.randomStep()
+	log.Printf("随机步数为 --> %d", step)
 	now := time.Now()
 	dataStr := now.Format("2006-01-02")
 	// 步数、时间数据替换
@@ -150,7 +147,7 @@ func (s *Sport) PushSetp() {
 		panic(err)
 	}
 	json.Unmarshal(all, &result)
-	log.Printf("update step result --> %v", result)
+	log.Printf("更新步数结果 --> %v", result)
 }
 
 //随机步数
