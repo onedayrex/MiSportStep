@@ -1,6 +1,9 @@
 package src
 
-import "testing"
+import (
+	"log"
+	"testing"
+)
 
 func TestSport_login(t *testing.T) {
 	type fields struct {
@@ -37,7 +40,6 @@ func TestSport_login(t *testing.T) {
 	}
 }
 
-
 func TestSport_PushSetp(t *testing.T) {
 	type fields struct {
 		UserName string
@@ -67,7 +69,8 @@ func TestSport_PushSetp(t *testing.T) {
 				Password: tt.fields.Password,
 				StepRang: tt.fields.StepRang,
 			}
-			s.PushSetp()
+			step := s.RandomStep()
+			log.Println(step)
 		})
 	}
 }
