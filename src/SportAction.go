@@ -12,6 +12,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -161,7 +162,22 @@ func (s *Sport) randomStep() int {
 	if err != nil {
 		panic(err)
 	}
+	if max < min {
+		panic("StepRang 配置最小步数应该小于最大步数 eg:8000-9000")
+	}
 	rand.Seed(time.Now().UnixNano())
 	stepNum := rand.Intn(max-min) + min
 	return stepNum
+}
+
+//异步执行
+func (s *Sport) AsyncSport(wg *sync.WaitGroup) {
+	s.Login()
+	s.PushSetp()
+	defer func() {
+		wg.Done()
+		if r := recover(); r != nil {
+			log.Printf("执行账号[%s]时出错，出错原因：%v", s.UserName, r)
+		}
+	}()
 }

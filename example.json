@@ -1,0 +1,12 @@
+[
+  {
+    "userName": "tom",
+    "password": "123",
+    "stepRang": "8000-9000"
+  },
+  {
+    "userName": "jerry",
+    "password": "556",
+    "stepRang": "10000-12000"
+  }
+]

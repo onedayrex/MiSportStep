@@ -1,7 +1,6 @@
 package src
 
 import (
-	"log"
 	"testing"
 )
 
@@ -69,8 +68,7 @@ func TestSport_PushSetp(t *testing.T) {
 				Password: tt.fields.Password,
 				StepRang: tt.fields.StepRang,
 			}
-			step := s.RandomStep()
-			log.Println(step)
+			println(s.UserName)
 		})
 	}
 }

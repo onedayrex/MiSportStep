@@ -18,9 +18,23 @@ MiSportStep是一个使用GoLang实现的步数同步工具，原理为通过调
 
    | 变量名           | 注释                                          |
    | :--------------- | --------------------------------------------- |
-   | XIAOMI_USERNAME  | 登录用户名，申请的小米账号手机号              |
-   | XIAOMI_PASSWORD  | 密码                                          |
-   | XIAOMI_STEP_RANG | 步数范围，格式  8000-9000  注意格式一定要正确 |
+   | XIAOMI_USER_INFO  | 该字段为JSON配置，详情详情如下              |
+
+```json
+[
+   {
+      "userName": "tom",
+      "password": "123",
+      "stepRang": "8000-9000"
+   },
+   {
+      "userName": "jerry",
+      "password": "556",
+      "stepRang": "10000-12000"
+   }
+]
+```
+json配置可同时配置多个账号，`userName`为登录手机号，`password`为登录密码，`stepRang`为该账号要刷的步数范围
 
 6. 修改定时任务时间，打开`.github/workflows/MI-SPORT-TASK.yml`文件，该文件是github执行action的文件，修改以下内容
 
