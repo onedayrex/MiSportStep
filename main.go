@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"log"
 	"os"
 	"sport"
 	"sync"
@@ -22,6 +23,8 @@ func main() {
 			wg.Add(1)
 			go s.AsyncSport(&wg)
 		}
+	} else {
+		log.Println("未找到配置账号，不执行推送操作")
 	}
 	wg.Wait()
 }

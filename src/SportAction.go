@@ -118,7 +118,7 @@ func getAccessCode(userName string, password string) string {
 
 func (s *Sport) PushSetp() {
 	step := s.randomStep()
-	log.Printf("随机步数为 --> %d", step)
+	log.Printf("账号：[%s]，随机步数为 --> %d", s.UserName, step)
 	now := time.Now()
 	dataStr := now.Format("2006-01-02")
 	// 步数、时间数据替换
