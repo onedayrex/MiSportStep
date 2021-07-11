@@ -25,7 +25,5 @@ jobs:
     #运行
     - name: Run app
       env:
-          XIAOMI_USERNAME: ${{secrets.XIAOMI_USERNAME}}
-          XIAOMI_PASSWORD: ${{secrets.XIAOMI_PASSWORD}}
-          XIAOMI_STEP_RANG: ${{secrets.XIAOMI_STEP_RANG}}
+          XIAOMI_USER_INFO: ${{secrets.XIAOMI_USER_INFO}}
       run: go run main.go
